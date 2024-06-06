@@ -1,11 +1,11 @@
 {
-  "name": "jsx-renderer",
-  "version": "1.0.0",
-  "main": "a.jsx",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "author": "",
-  "license": "ISC",
-  "description": ""
+	"name": "jsx-renderer",
+	"version": "1.0.0",
+	"main": "a.jsx",
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1"
+	},
+	"author": "",
+	"license": "ISC",
+	"description": ""
 }
