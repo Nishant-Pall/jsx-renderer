@@ -28,8 +28,7 @@ let vdom = (
 );
 
 let prettyVdom = JSON.stringify(vdom, null, 4);
-console.log(prettyVdom);
 
 let dom = render(vdom);
 
-// document.body.appendChild(dom);
+document.body.appendChild(dom);
