@@ -1,11 +1,23 @@
 {
-	"name": "jsx-renderer",
-	"version": "1.0.0",
-	"main": "a.jsx",
-	"scripts": {
-		"test": "echo \"Error: no test specified\" && exit 1"
-	},
-	"author": "",
-	"license": "ISC",
-	"description": ""
+  "name": "jsx-renderer",
+  "version": "1.0.0",
+  "main": "a.jsx",
+  "scripts": {
+    "watch": "nodemon",
+    "dev": "npm run build && npm run serve",
+    "build": "esbuild ./src/index.jsx > build.js",
+    "live-serve": "live-server --no-browser --watch=index.html",
+    "serve": "open ./index.html",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "esbuild": "^0.21.4",
+    "open": "^10.1.0"
+  },
+  "devDependencies": {
+    "live-server": "^1.2.2"
+  }
 }

@@ -1,0 +1,5 @@
+{
+  "watch": ["src/", "config/", "scripts/"],
+  "ext": "js,json,html,css,jsx",
+  "exec": "npm run dev"
+}
