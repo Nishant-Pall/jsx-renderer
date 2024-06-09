@@ -17,26 +17,27 @@ function legacyRender(vnode) {
   return node;
 }
 
-const render = (vdom, parent = null) => {
+
+const render = (node, parent = null) => {
   if (parent) parent.textContent = "";
   const mount = parent ? (el) => parent.appendChild(el) : (el) => el;
-  if (typeof vdom == "string" || typeof vdom == "number") {
-    return mount(document.createTextNode(vdom));
-  } else if (typeof vdom == "boolean" || vdom === null) {
+  if (typeof node == "string" || typeof node == "number") {
+    return mount(document.createTextNode(node));
+  } else if (typeof node == "boolean" || node === null) {
     return mount(document.createTextNode(""));
-  } else if (typeof vdom == "object" && typeof vdom.type == "function") {
-    return Component.render(vdom, parent);
-  } else if (typeof vdom == "object" && typeof vdom.type == "string") {
-    const dom = document.createElement(vdom.type);
+  } else if (typeof node == "object" && typeof node.type == "function") {
+    return Component.render(node, parent);
+  } else if (typeof node == "object" && typeof node.type == "string") {
+    const dom = document.createElement(node.type);
     for (const child of [
       /* flatten */
-    ].concat(...vdom.children))
+    ].concat(...node.children))
       dom.appendChild(render(child));
-    for (const prop in vdom.props) setAttribute(dom, prop, vdom.props[prop]);
+    for (const prop in node.props) setAttribute(dom, prop, node.props[prop]);
     return mount(dom);
   } else {
-    console.log(vdom);
-    console.error(`Invalid VDOM: ${vdom}`);
+    console.log(node);
+    console.error(`Invalid node: ${node}`);
   }
 };
 
