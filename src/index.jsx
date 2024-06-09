@@ -17,6 +17,7 @@ function legacyRender(vnode) {
   return node;
 }
 
+
 const render = (node, parent = null) => {
   if (parent) parent.textContent = "";
   const mount = parent ? (el) => parent.appendChild(el) : (el) => el;
