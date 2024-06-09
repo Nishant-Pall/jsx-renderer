@@ -10,8 +10,8 @@ function render(vnode) {
   (vnode.children || []).forEach((n) => node.appendChild(render(n)));
   return node;
 }
-let vdom = /* @__PURE__ */ createElement("div", { id: "foo" }, /* @__PURE__ */ createElement("ul", null, /* @__PURE__ */ createElement("li", null, "1"), /* @__PURE__ */ createElement("li", null, "1"), /* @__PURE__ */ createElement("li", null, "1")));
+let vdom = /* @__PURE__ */ createElement("div", { id: "foo" }, /* @__PURE__ */ createElement("ul", null, /* @__PURE__ */ createElement("li", null, "1"), /* @__PURE__ */ createElement("li", null, "1"), /* @__PURE__ */ createElement("li", null, "1"), /* @__PURE__ */ createElement("li", null, "1"), /* @__PURE__ */ createElement("li", null, "1")));
 let prettyVdom = JSON.stringify(vdom, null, 4);
+console.log(prettyVdom);
 let dom = render(vdom);
-console.log(dom);
 document.body.appendChild(dom);
