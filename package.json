@@ -2,10 +2,11 @@
   "name": "jsx-renderer",
   "version": "1.0.0",
   "main": "a.jsx",
+  "type": "module",
   "scripts": {
     "watch": "nodemon",
     "dev": "npm run build && npm run serve",
-    "build": "esbuild ./src/index.jsx > build.js",
+    "build": "esbuild ./src/index.jsx --jsx-factory=createElement --bundle --outdir=dist --watch",
     "live-serve": "live-server --no-browser --watch=index.html",
     "serve": "open ./index.html",
     "test": "echo \"Error: no test specified\" && exit 1"
