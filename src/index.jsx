@@ -36,7 +36,6 @@ const render = (node, parent = null) => {
     for (const prop in node.props) setAttribute(dom, prop, node.props[prop]);
     return mount(dom);
   } else {
-    console.log(node);
     console.error(`Invalid node: ${node}`);
   }
 };
@@ -77,8 +76,8 @@ let vdom = (
       ))}
       <li className="hello-1">1</li>
       <ul>
-        <li className="hello-2">inner</li>
-        <li className="hello-3">inner</li>
+        <li className="hello-2">inner 1</li>
+        <li className="hello-3">inner 2</li>
       </ul>
       <li className="hello-2">2</li>
       <li className="hello-3">3</li>
@@ -88,5 +87,6 @@ let vdom = (
 
 // let prettyVdom = JSON.stringify(vdom, null, 4);
 
+console.log(vdom);
 render(vdom, document.getElementById("root"));
 // let dom = render(vdom);
