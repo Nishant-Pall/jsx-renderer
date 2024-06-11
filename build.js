@@ -10,26 +10,26 @@ function legacyRender(vnode) {
   (vnode.children || []).forEach((n) => node.appendChild(legacyRender(n)));
   return node;
 }
-const render = (vdom2, parent = null) => {
+const render = (node, parent = null) => {
   if (parent) parent.textContent = "";
   const mount = parent ? (el) => parent.appendChild(el) : (el) => el;
-  if (typeof vdom2 == "string" || typeof vdom2 == "number") {
-    return mount(document.createTextNode(vdom2));
-  } else if (typeof vdom2 == "boolean" || vdom2 === null) {
+  if (typeof node == "string" || typeof node == "number") {
+    return mount(document.createTextNode(node));
+  } else if (typeof node == "boolean" || node === null) {
     return mount(document.createTextNode(""));
-  } else if (typeof vdom2 == "object" && typeof vdom2.type == "function") {
-    return Component.render(vdom2, parent);
-  } else if (typeof vdom2 == "object" && typeof vdom2.type == "string") {
-    const dom = document.createElement(vdom2.type);
+  } else if (typeof node == "object" && typeof node.type == "function") {
+    return Component.render(node, parent);
+  } else if (typeof node == "object" && typeof node.type == "string") {
+    const dom = document.createElement(node.type);
     for (const child of [
       /* flatten */
-    ].concat(...vdom2.children))
+    ].concat(...node.children))
       dom.appendChild(render(child));
-    for (const prop in vdom2.props) setAttribute(dom, prop, vdom2.props[prop]);
+    for (const prop in node.props) setAttribute(dom, prop, node.props[prop]);
     return mount(dom);
   } else {
-    console.log(vdom2);
-    console.error(`Invalid VDOM: ${vdom2}`);
+    console.log(node);
+    console.error(`Invalid node: ${node}`);
   }
 };
 const setAttribute = (dom, key, value) => {
@@ -52,31 +52,14 @@ const setAttribute = (dom, key, value) => {
   }
 };
 const list = [1, 2, 3, 4];
-let vdom = /* @__PURE__ */ createElement(
-  "div",
-  { id: "foo" },
-  /* @__PURE__ */ createElement(
-    "button",
-    {
-      onClick: () => {
-        console.log(12312312321);
-      },
-    },
-    "Click Me"
-  ),
-  /* @__PURE__ */ createElement(
-    "ul",
-    null,
-    list.map((l) => /* @__PURE__ */ createElement("li", null, l)),
-    /* @__PURE__ */ createElement("li", { className: "hello-1" }, "1"),
-    /* @__PURE__ */ createElement(
-      "ul",
-      null,
-      /* @__PURE__ */ createElement("li", { className: "hello-2" }, "inner"),
-      /* @__PURE__ */ createElement("li", { className: "hello-3" }, "inner")
-    ),
-    /* @__PURE__ */ createElement("li", { className: "hello-2" }, "2"),
-    /* @__PURE__ */ createElement("li", { className: "hello-3" }, "3")
-  )
-);
+let vdom = /* @__PURE__ */ createElement("div", { id: "foo" }, /* @__PURE__ */ createElement(
+  "button",
+  {
+    onClick: () => {
+      console.log(12312312321);
+    }
+  },
+  "Click Me"
+), /* @__PURE__ */ createElement("ul", null, list.map((l) => /* @__PURE__ */ createElement("li", null, l)), /* @__PURE__ */ createElement("li", { className: "hello-1" }, "1"), /* @__PURE__ */ createElement("ul", null, /* @__PURE__ */ createElement("li", { className: "hello-2" }, "inner 1"), /* @__PURE__ */ createElement("li", { className: "hello-3" }, "inner 2")), /* @__PURE__ */ createElement("li", { className: "hello-2" }, "2"), /* @__PURE__ */ createElement("li", { className: "hello-3" }, "3")));
+console.log(vdom);
 render(vdom, document.getElementById("root"));
